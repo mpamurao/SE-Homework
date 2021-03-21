@@ -1,10 +1,10 @@
 /* boiler plate for box sizing to be border-box on page */
 html{
     box-sizing: border-box
-  }
-  *, *::before, *::after {
+}
+*, *::before, *::after{
     box-sizing: inherit;
-  }
+}
 body{
     padding-left:25px;
     padding-right:10px;
@@ -31,13 +31,13 @@ h3{
     padding-top: 10px;
     border:0px;
 }
-.sticky-bar {
+.sticky-bar{
     background-color: rgb(27, 27, 27);
     position: -webkit-sticky;
     position:sticky;
     top: 0;
     width:100%;
-  }
+}
 nav{
     font-weight:bolder;
     font-size: 20pt;
