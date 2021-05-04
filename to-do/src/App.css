@@ -1,0 +1,75 @@
+.App{
+  /* border:1px solid black; */
+  margin:2em;
+  display:flex;
+  justify-content: center;
+  font-size:14pt;
+}
+
+.helloGreeting{
+  /* border:1px solid brown; */
+  text-align:center;
+}
+input, button{
+  font-size:1em;
+  margin:0.2em;
+}
+
+.todoContainer{
+  border:none;
+  /* border:1px solid purple; */
+}
+
+.day{
+  /* border:1px solid green; */
+  text-align: center;
+}
+
+ul{
+  margin-top:1em;
+  padding:0;
+}
+
+.checkboxContainer{
+  border-bottom:2px solid black;
+  display:flex;
+  flex-flow:row nowrap;
+  justify-content: space-between;
+  padding:0.3em 0em 0.3em 0em;
+}
+
+.line-through, .no-strike{
+  /* border:1px solid blue; */
+  display:flex;
+  flex-flow: row nowrap;
+  padding-left:0.4em;
+}
+.line-through{
+  text-decoration:line-through;
+  color:rgb(112, 110, 110);
+}
+.no-strike{
+  text-decoration:none;
+}
+
+
+.item{
+  /* border:1px solid blue; */
+  padding-left:0.5em;
+  margin:0;
+}
+
+.deleteItem{
+  /* border:1px solid rgb(73, 72, 72); */
+  color:rgb(112, 110, 110);
+  width:1em;
+  text-align: center;
+  margin-right:0.5em;
+  user-select:none;
+}
+.deleteItem:hover{
+  text-shadow: 1px 1px black;
+  /* background-color:rgba(128, 128, 128, 0.404); */
+  color:black;
+  font-weight:bold;
+}
