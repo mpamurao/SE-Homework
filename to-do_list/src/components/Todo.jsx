@@ -30,7 +30,8 @@ class Todo extends Component {
                 <ul>
                     {/* show each item in this.state.list */}
                     {this.state.list.map((item, index) => {
-                        return <Checkbox item={item} index={index} key={`${item}-${index}`} deleteItem={this.deleteItem} />;
+                        return <Checkbox item={item.input} index={index} key={`${item.input}-${index}`} 
+                                strikeFunction={this.strikeFunction} strike={item.strike} check={item.check} deleteItem={this.deleteItem} />;
                     })}
                 </ul>
             </div>
@@ -55,7 +56,9 @@ class Todo extends Component {
         }
         // create new var as a copy of the list array
         const listArray = this.state.list;
-        listArray.push(input);
+
+        // add index containing an object with input, check, and strike keys
+        listArray.push({input, check:false, strike:"no-strike"});
 
         this.setState({
             list: listArray,
@@ -70,11 +73,28 @@ class Todo extends Component {
         }
     }
 
+    // className will change depending on if checkbox is checked
+    strikeFunction = (index) => {
+        const listArray = this.state.list;
+
+        // if not checked, change to line-through and checked
+        if (!listArray[index].check){
+            listArray[index].strike = "line-through";
+            listArray[index].check = true;
+        }
+        else{
+            listArray[index].strike = "no-strike";
+            listArray[index].check = false;
+        }
+
+        this.setState({list:listArray});
+    }
+
     deleteItem = (index) => {
         const listArray = this.state.list;
+
         // .splice = (start, deleteCount, addItem) (start at index, remove 1 item)
         listArray.splice(index, 1);
-        // console.log(listArray, index)
 
         this.setState({list: listArray});
     }
@@ -91,7 +111,6 @@ class Todo extends Component {
         return today;
     }
 }
-
 
 export default Todo;
 
