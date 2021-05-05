@@ -5,22 +5,18 @@ class Groceries extends Component {
         return (
             <div className="groceryItem">
                
-                {console.log(this.props.itemDescriptions, this.props.itemDescriptions.length)}
-                {/* {`${this.props.itemDescriptions[0][0]}: ${this.props.itemDescriptions[0][1]}`} */}
-                {this.props.itemDescriptions.map((description, index) => {
-                    if (index === (this.props.itemDescriptions.length - 1)){
-                        return null;
-                    }
-
-                    if (description.includes("units")){
-                        return <div className={description[0]} key={`${description[0]}-${this.props.index}`}>{`${description[0]}:Hi`}</div>
-                    }
-                    return <div className={description[0]} key={`${description[0]}-${this.props.index}`}>{`${description[0]}: ${description[1]}`}</div>
-                })}
+                {/* {console.log(this.props.item, this.props.item.length)} */}
+                <div className={this.props.item.item}>
+                    Item: {this.props.item.brand} {this.props.item.item}
+                </div>
+                <div className="Quantity">
+                    Quantity: {this.props.item.quantity} {this.props.item.units}
+                </div>
                
             </div>
         );
     }
 }
+
 
 export default Groceries;
