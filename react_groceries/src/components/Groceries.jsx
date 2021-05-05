@@ -12,6 +12,8 @@ class Groceries extends Component {
                 <div className="Quantity">
                     Quantity: {this.props.item.quantity} {this.props.item.units}
                 </div>
+
+                <button className="removeButton" onClick={() => {this.props.removeItem(this.props.index)}}>Remove Item</button>
                
             </div>
         );

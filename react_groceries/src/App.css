@@ -14,6 +14,16 @@ label{
 input[type="text"]{
   width:100%;
 }
+
 .groceryItem{
   border-bottom:1px solid black;
+  display:flex;
+  flex-direction: column;
+  padding:0.5em;
+}
+
+.removeButton{
+  /* border:1px solid blue; */
+  width:8em;
+  align-self: flex-end;
 }

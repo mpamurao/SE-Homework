@@ -20,15 +20,25 @@ class App extends Component {
       <div className="App">
         <h1>Grocery List</h1>
 
-        <label>
-        <input type="text" placeholder="List Brand, Item, Quantity, Unit" title="List Brand, Item, Quantity, Unit"
+      {/* input textbox and button */}
+      <label>
+        <div className="textDescription">
+          List in order: Brand, Item, Quantity, Unit (including the commas)
+        </div>
+        
+        <input type="text" placeholder="Brand, Item, Quantity, Unit" title="List Brand, Item, Quantity, Unit"
           onChange={this.handleChange} onKeyPress={this.enterKey}></input>
-        <button onSubmit={this.addToList}>Add Item</button>
-        </label>
+        <button onClick={this.addToList}>Add Item</button>
+      </label>
 
-        <div className="groceryContainer">
-          {this.state.groceriesList.map((item, index) => {
-            return <Groceries item={item} index={index} key={`${item}-${index}`}></Groceries>
+      <div className="groceryContainer">
+        {this.state.groceriesList.map((item, index) => {
+          // if item is not purchased, display component
+          return (!item.isPurchased
+                  ? <Groceries item={item} index={index} key={`${item}-${index}`} removeItem={this.removeItem}/>
+                  : null)
+
+
           })}
         </div>
       </div>
@@ -42,9 +52,12 @@ class App extends Component {
 
   addToList = () => {
     const input = this.state.userInput;
-    console.log(input)
-    // if textbox value is empty
-    if (!input){
+  
+    // count number of commas are in input. regex to replace anything that doesn't match comma to ""
+    const commaCount = input.replace(/[^,]/g, "").length;
+
+    // if textbox value is empty or the correct format with commas are not specified, return
+    if (!input || commaCount !== 3){
       return;
     }
 
@@ -69,12 +82,22 @@ class App extends Component {
     this.setState({groceriesList});
   }
 
+  // when enter key is pressed in textbox, call addToList
   enterKey = (event) => {
     if (event.key === "Enter"){
       this.addToList()
     }
   }
 
+  // called when clicking remove button
+  removeItem = (index) => {
+    const groceriesList = this.state.groceriesList;
+    // set isPurchased to true
+    groceriesList[index].isPurchased = true;
+    this.setState({groceriesList})
+    // when re-rendered, isPurchased is true, 
+    // so won't display component
+  }
   
 
 }
