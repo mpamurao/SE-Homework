@@ -8,11 +8,19 @@
 
 label{
   /* border:1px solid black; */
-  justify-content: center;
   padding: 1em 1em 1em 0em;
 }
+
+.textDescription{
+  /* border:1px solid green; */
+  font-size:0.8em;
+  font-weight: bold;
+  margin-bottom:0.2em;
+}
+
 input[type="text"]{
   width:100%;
+  font-size:1.1em;
 }
 
 .groceryItem{
@@ -20,6 +28,10 @@ input[type="text"]{
   display:flex;
   flex-direction: column;
   padding:0.5em;
+}
+.addButton{
+  margin-top:0.5em;
+  font-size:1em;
 }
 
 .removeButton{

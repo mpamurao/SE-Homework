@@ -18,27 +18,26 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Grocery List</h1>
+        <h1 className="title">Grocery List</h1>
 
       {/* input textbox and button */}
       <label>
         <div className="textDescription">
-          List in order: Brand, Item, Quantity, Unit (including the commas)
+          Enter an item specifying: Brand (optional), Item, Quantity, Unit (including the commas).<br></br>
         </div>
         
-        <input type="text" placeholder="Brand, Item, Quantity, Unit" title="List Brand, Item, Quantity, Unit"
+        <input type="text" placeholder="Brand(optional), Item, Quantity, Unit" title="List Brand, Item, Quantity, Unit"
           onChange={this.handleChange} onKeyPress={this.enterKey}></input>
-        <button onClick={this.addToList}>Add Item</button>
+        <button className="addButton" onClick={this.addToList}>Add Item</button>
       </label>
 
       <div className="groceryContainer">
         {this.state.groceriesList.map((item, index) => {
-          // if item is not purchased, display component
+          // if item is not purchased, display component, else null
           return (!item.isPurchased
-                  ? <Groceries item={item} index={index} key={`${item}-${index}`} removeItem={this.removeItem}/>
+                  ? <Groceries groceryItem={item} index={index} 
+                    key={`${item.item}-${index}`} removeItem={this.removeItem}/>
                   : null)
-
-
           })}
         </div>
       </div>
@@ -46,40 +45,74 @@ class App extends Component {
   }
 
   handleChange = (event) => {
-    this.setState({userInput: event.target.value})
+    this.setState({userInput: event.target.value});
     // console.log(this.state.userInput)
   }
 
   addToList = () => {
     const input = this.state.userInput;
+    console.log(input);
   
-    // count number of commas are in input. regex to replace anything that doesn't match comma to ""
-    const commaCount = input.replace(/[^,]/g, "").length;
-
-    // if textbox value is empty or the correct format with commas are not specified, return
-    if (!input || commaCount !== 3){
+    if (!input){
       return;
     }
 
-    // input array with "Brand, Item, Quantity, Unit" format
-    const parsedInput = input.split(",");
-    console.log(parsedInput)
+    // count number of commas in input
+    // regex to replace anything that isn't a comma to ""
+    const commaCount = input.replace(/[^,]/g, "").length;
 
     // get groceryList array
     const groceriesList = this.state.groceriesList;
+
     // create an object that'll be pushed into groceryList
-    const itemDescription = {}
-    
+    const itemDescription = {
+      item: input,
+      brand: "",
+      units: "",
+      quantity: "",
+      isPurchased: false,
+    }
 
-    itemDescription.item = parsedInput[1];
-    itemDescription.brand = parsedInput[0];
-    itemDescription.units = parsedInput[3];
-    itemDescription.quantity = parsedInput[2];
-    itemDescription.isPurchased = false;
+    // if input has no commas, then it's specifying only item
+    if (commaCount === 0){
+      groceriesList.push(itemDescription);
+      this.setState({groceriesList});
+      return;
+    }
 
-    groceriesList.push(itemDescription);
+    // input converting string to array with "Brand(optional), Item, Quantity, Unit" format
+    const parsedInput = input.split(",");
 
-    this.setState({groceriesList});
+    // if input has 1 comma, then it's specifying item and qty
+    if (commaCount === 1){
+      itemDescription.item = parsedInput[0];
+      itemDescription.quantity = parsedInput[1];
+
+      groceriesList.push(itemDescription);
+      this.setState({groceriesList});
+      return;
+    }
+
+    // 2 commas specify item, qty, and units
+    if (commaCount === 2){
+      itemDescription.item = parsedInput[0];
+      itemDescription.quantity = parsedInput[1];
+      itemDescription.units = parsedInput[2];
+
+      groceriesList.push(itemDescription);
+      this.setState({groceriesList});
+      return;
+    }
+    // 3 commas specify brand, item, qty, units
+    if (commaCount === 3){
+      itemDescription.brand = parsedInput[0];
+      itemDescription.item = parsedInput[1];
+      itemDescription.quantity = parsedInput[2];
+      itemDescription.units = parsedInput[3];
+
+      groceriesList.push(itemDescription);
+      this.setState({groceriesList});
+    }
   }
 
   // when enter key is pressed in textbox, call addToList
@@ -92,14 +125,13 @@ class App extends Component {
   // called when clicking remove button
   removeItem = (index) => {
     const groceriesList = this.state.groceriesList;
+
     // set isPurchased to true
-    groceriesList[index].isPurchased = true;
-    this.setState({groceriesList})
     // when re-rendered, isPurchased is true, 
     // so won't display component
+    groceriesList[index].isPurchased = true;
+    this.setState({groceriesList})
   }
-  
-
 }
 
 export default App;

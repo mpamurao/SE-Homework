@@ -4,17 +4,17 @@ class Groceries extends Component {
     render() {
         return (
             <div className="groceryItem">
-               
-                {/* {console.log(this.props.item, this.props.item.length)} */}
-                <div className={this.props.item.item}>
-                    Item: {this.props.item.brand} {this.props.item.item}
+                {/* {console.log(this.props.groceryItem, this.props.groceryItem.length)} */}
+                <div className={this.props.groceryItem.item}>
+                    Item: {this.props.groceryItem.brand} {this.props.groceryItem.item}
                 </div>
                 <div className="Quantity">
-                    Quantity: {this.props.item.quantity} {this.props.item.units}
+                    Quantity: <b>{this.props.groceryItem.quantity}</b> {this.props.groceryItem.units}
                 </div>
 
-                <button className="removeButton" onClick={() => {this.props.removeItem(this.props.index)}}>Remove Item</button>
-               
+                <button className="removeButton" onClick={() => {this.props.removeItem(this.props.index)}}>
+                    Remove
+                </button>
             </div>
         );
     }
