@@ -1,5 +1,5 @@
 const groceries1 = [
-    {name: "Marie"},
+    {name: "Remu"},
     {
         item: 'Paper Towels',
         brand: 'Sparkle',
@@ -24,7 +24,7 @@ const groceries1 = [
 ]
 
 const groceries2 = [
-    {name: "Mark"},
+    {name: "Haku"},
     {
         item: 'Water',
         brand: 'Publix',
@@ -49,7 +49,7 @@ const groceries2 = [
 ]
 
 const groceries3 = [
-    {name: "May"},
+    {name: "Sonia"},
     {
         item: 'Chicken',
         brand: 'Greenwise',
@@ -73,4 +73,6 @@ const groceries3 = [
     }
 ]
 
-export default [groceries1, groceries2, groceries3];
+let groceries = [groceries1, groceries2, groceries3];
+
+export default groceries;

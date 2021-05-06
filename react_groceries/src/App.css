@@ -1,17 +1,16 @@
 .App{
   /* border:2px solid black; */
   margin:1em;
-  /* padding:1em; */
   display:flex;
-  flex-flow:row nowrap;
-  justify-content: center;
-  align-items: center;
+  flex-flow:row wrap;
+  justify-self: center;
 }
 
 .groceryList{
   /* border:1px solid green; */
-  margin:1em;
-  width:50%;
+  margin:1.5em;
+  width:30%;
+  justify-self: center;
 }
 label{
   /* border:1px solid black; */
