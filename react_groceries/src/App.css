@@ -8,13 +8,18 @@
 
 .groceryList{
   /* border:1px solid green; */
-  margin:1.5em;
+  margin:0em 1.5em 1.5em 1.5em;
   width:30%;
   justify-self: center;
 }
-label{
+@media (max-width:900px){
+  .groceryList{
+    width:100%;
+  }
+}
+form{
   /* border:1px solid black; */
-  padding: 1em 1em 1em 0em;
+  padding: 0.5em 1em 1.2em 0em;
 }
 
 .textDescription{
