@@ -7,18 +7,19 @@ import groceries from './data/groceries.js';
 class App extends Component {
   constructor() {
     super()
+    
     this.state = {
-      groceries
+      sortedGroceryNames: groceries,
     }
   }
 
   componentDidMount() {
-    const groceries = this.state.groceries;
+    const sortedGroceryNames = this.state.sortedGroceryNames;
 
     // organize grocery lists by name
     // .sort = sorts array. can take in a function to pass in 
     // a (2nd element) and b (1st element)
-    groceries.sort((a,b) => {
+    sortedGroceryNames.sort((a,b) => {
       // console.log("a", a, "b", b)
       // set name to uppercase for case insensitive
       // sort converts values to UTF-16 (unicode)
@@ -30,13 +31,13 @@ class App extends Component {
       // a > b returns > 0, sort b before a
       return (nameA < nameB) ? -1 : (nameA > nameB) ? 1 : 0;
     });
-    this.setState({groceries})
+    this.setState({sortedGroceryNames:sortedGroceryNames});
   }
 
   render() {
     return (
       <div className="App">
-        {this.state.groceries.map(list => {
+        {this.state.sortedGroceryNames.map((list) => {
           return <GroceryList groceries={list} key={list[0].name} name={list[0].name}/>
         })}
       </div>
