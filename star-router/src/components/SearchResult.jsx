@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import SearchBar from './SearchBar';
 import config from '../config';
 // import data from './dummydata';
 
@@ -77,20 +78,12 @@ class SearchResult extends Component {
        
         return (
             <div className="mainContainer">
-                <form style={{flexDirection: "row"}}>
-                    <label htmlFor="searchBox">
-                        <input type="text" title="movie search" placeholder="Search for a movie..." className="searchBox"
-                            value={this.state.userInput} onChange={this.handleChange} onKeyPress={this.keyPress}></input>
-                    </label>
-
-                     {/* if input is empty, show div */}
-                    <button type="submit" title="submit" onClick={this.changeLink}>Submit</button> 
-                    {this.state.error ? <div><b>Please enter a movie title</b></div> : null}
-                </form>
+                <SearchBar userInput={this.state.userInput} error={this.state.error}
+                    handleChange={this.handleChange} keyPress={this.keyPress} changeLink={this.changeLink} />
 
                 {/* if  false response, state error. else, show movie content*/}
                 {this.state.data.Response === "False"
-                    ? <div className="headerTitle"> {this.state.data.Error} </div>
+                    ? <div className="headerTitle">Result not found</div>
                     : <div style={movieInfoContainer}>
                             <h1 className="headerTitle">{this.state.data.Title}</h1>
                         <div style={moviePlotImage}>

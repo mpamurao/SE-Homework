@@ -6,7 +6,7 @@ function About(props) {
         listStyle: "circle",
         fontSize:"1.2rem"
     }
-    
+
     return (
         // describe the use of the application
         <div className="mainContainer">
@@ -14,7 +14,7 @@ function About(props) {
             <div className="aboutDescript">
                 <ul>
                     <li style={li}>This application uses the OMDb API to search through a movie database.</li>
-                    <li style={li}>Entering a movie title inside the search box will provide info on the movie if there is an exact match.</li>
+                    <li style={li}>Entering a title inside the search box will provide info on the show if there is an exact match.</li>
                     <li style={li}>The info provided includes actors, writers, genre, year released, rating, plot, and movie poster.</li>
                 </ul>
                 

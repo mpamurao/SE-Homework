@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import SearchBar from './SearchBar';
 
 class Home extends Component {
     constructor() {
@@ -33,23 +34,13 @@ class Home extends Component {
         this.props.history.push(`/${this.state.userInput}`);
     }
 
-    
     render() {
         return (
             <div className="mainContainer">
-                <div className="headerTitle">Movie Search</div>
+                <div className="headerTitle">OMDb Search</div>
 
-                <form>
-                    <label htmlFor="searchBox">
-                        <input type="text" title="movie search" placeholder="Search for a movie..." className="searchBox"
-                            value={this.state.userInput} onChange={this.handleChange} onKeyPress={this.keyPress}></input>
-                    </label>
-
-                    {/* if input is empty, show div */}
-                    {this.state.error ? <div><b>Please enter a movie title</b></div> : null}
-
-                    <button type="submit" title="submit" onClick={this.changeLink}>Submit</button>    
-                </form>
+                <SearchBar userInput={this.state.userInput} error={this.state.error}
+                    handleChange={this.handleChange} keyPress={this.keyPress} changeLink={this.changeLink} />
             </div>
         );
     }
