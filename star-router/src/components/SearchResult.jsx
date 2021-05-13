@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import config from '../config';
+import data from './dummydata';
 
 class SearchResult extends Component {
     constructor() {
@@ -11,12 +12,12 @@ class SearchResult extends Component {
     }
     componentDidMount = async () => {
         const {result} = this.props.match.params;
-        const apiKey = config.omdbAPI
-        const url = `http://www.omdbapi.com/?i=tt3896198&apikey=${apiKey}&t=${result}`;
+        // const apiKey = config.omdbAPI
+        // const url = `http://www.omdbapi.com/?i=tt3896198&apikey=${apiKey}&t=${result}`;
         
         try{
-            const response = await fetch(url);
-            const data = await response.json();
+            // const response = await fetch(url);
+            // const data = await response.json();
             console.log(data);
 
             this.setState({data});
