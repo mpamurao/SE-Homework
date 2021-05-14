@@ -9,4 +9,4 @@ Per Scholas Assignment for Spring 2021 Cohort
   <li> Grocery </li>
   
 <h3> Week 8 - API calls and BrowserRouter </h3>
- <li> Star Router </li>
+ <li> Star Router (Movie Search via OMDb) </li>
